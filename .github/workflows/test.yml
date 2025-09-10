@@ -15,10 +15,6 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Set environment variables
-    env:  
-      DATABASE_URL: ${{ secrets.DATABASE_URL }}
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -33,6 +29,12 @@ jobs:
       # Install dependencies
       - name: Install dependencies
         run: npm install
+
+      # Create .env file and add DATABASE_URL from secrets
+      - name: Create .env file
+        run: |
+          touch .env
+          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
 
       # Runs a test script
       - name: Run a test script
