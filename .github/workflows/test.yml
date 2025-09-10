@@ -26,6 +26,10 @@ jobs:
         with:
           node-version: 20.10.0
 
+      # Install dependencies
+      - name: Install dependencies
+        run: npm install
+
       # Runs a test script
       - name: Run a test script
         run: npm run test
